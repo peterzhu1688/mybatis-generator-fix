@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ky.mms.dal.mysql.mapper.TransferEventDoMapper">
+  <resultMap id="BaseResultMap" type="com.ky.mms.dal.mysql.model.TransferEventDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="event_id" jdbcType="VARCHAR" property="eventId" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="src_whs_id" jdbcType="VARCHAR" property="srcWhsId" />
+    <result column="dst_whs_id" jdbcType="VARCHAR" property="dstWhsId" />
+    <result column="mat_count" jdbcType="INTEGER" property="matCount" />
+    <result column="total_fee" jdbcType="DECIMAL" property="totalFee" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="dc_status" jdbcType="TINYINT" property="dcStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_id, mat_id, src_whs_id, dst_whs_id, mat_count, total_fee, operator, remark, 
+    dc_status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_transfer_event
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_transfer_event
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ky.mms.dal.mysql.model.TransferEventDo">
+    insert into mms_transfer_event (id, event_id, mat_id, 
+      src_whs_id, dst_whs_id, mat_count, 
+      total_fee, operator, remark, 
+      dc_status, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{eventId,jdbcType=VARCHAR}, #{matId,jdbcType=VARCHAR}, 
+      #{srcWhsId,jdbcType=VARCHAR}, #{dstWhsId,jdbcType=VARCHAR}, #{matCount,jdbcType=INTEGER}, 
+      #{totalFee,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{dcStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ky.mms.dal.mysql.model.TransferEventDo">
+    insert into mms_transfer_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eventId != null">
+        event_id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="srcWhsId != null">
+        src_whs_id,
+      </if>
+      <if test="dstWhsId != null">
+        dst_whs_id,
+      </if>
+      <if test="matCount != null">
+        mat_count,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="dcStatus != null">
+        dc_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="eventId != null">
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcWhsId != null">
+        #{srcWhsId,jdbcType=VARCHAR},
+      </if>
+      <if test="dstWhsId != null">
+        #{dstWhsId,jdbcType=VARCHAR},
+      </if>
+      <if test="matCount != null">
+        #{matCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dcStatus != null">
+        #{dcStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ky.mms.dal.mysql.model.TransferEventDo">
+    update mms_transfer_event
+    <set>
+      <if test="eventId != null">
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcWhsId != null">
+        src_whs_id = #{srcWhsId,jdbcType=VARCHAR},
+      </if>
+      <if test="dstWhsId != null">
+        dst_whs_id = #{dstWhsId,jdbcType=VARCHAR},
+      </if>
+      <if test="matCount != null">
+        mat_count = #{matCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dcStatus != null">
+        dc_status = #{dcStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ky.mms.dal.mysql.model.TransferEventDo">
+    update mms_transfer_event
+    set event_id = #{eventId,jdbcType=VARCHAR},
+      mat_id = #{matId,jdbcType=VARCHAR},
+      src_whs_id = #{srcWhsId,jdbcType=VARCHAR},
+      dst_whs_id = #{dstWhsId,jdbcType=VARCHAR},
+      mat_count = #{matCount,jdbcType=INTEGER},
+      total_fee = #{totalFee,jdbcType=DECIMAL},
+      operator = #{operator,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      dc_status = #{dcStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

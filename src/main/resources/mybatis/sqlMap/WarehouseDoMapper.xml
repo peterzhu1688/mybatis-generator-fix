@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ky.mms.dal.mysql.mapper.WarehouseDoMapper">
+  <resultMap id="BaseResultMap" type="com.ky.mms.dal.mysql.model.WarehouseDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="whs_id" jdbcType="VARCHAR" property="whsId" />
+    <result column="whs_name" jdbcType="VARCHAR" property="whsName" />
+    <result column="whs_status" jdbcType="TINYINT" property="whsStatus" />
+    <result column="whs_size" jdbcType="DOUBLE" property="whsSize" />
+    <result column="whs_type" jdbcType="CHAR" property="whsType" />
+    <result column="rent_fee" jdbcType="DECIMAL" property="rentFee" />
+    <result column="rent_start_date" jdbcType="DATE" property="rentStartDate" />
+    <result column="rent_end_date" jdbcType="DATE" property="rentEndDate" />
+    <result column="whs_address" jdbcType="VARCHAR" property="whsAddress" />
+    <result column="whs_lgt" jdbcType="VARCHAR" property="whsLgt" />
+    <result column="whs_lat" jdbcType="VARCHAR" property="whsLat" />
+    <result column="whs_owner" jdbcType="VARCHAR" property="whsOwner" />
+    <result column="whs_owner_cellphone" jdbcType="VARCHAR" property="whsOwnerCellphone" />
+    <result column="whs_keeper" jdbcType="VARCHAR" property="whsKeeper" />
+    <result column="whs_keeper_cellphone" jdbcType="VARCHAR" property="whsKeeperCellphone" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, whs_id, whs_name, whs_status, whs_size, whs_type, rent_fee, rent_start_date, 
+    rent_end_date, whs_address, whs_lgt, whs_lat, whs_owner, whs_owner_cellphone, whs_keeper, 
+    whs_keeper_cellphone, remark, create_user, create_time, update_user, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_warehouse
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_warehouse
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ky.mms.dal.mysql.model.WarehouseDo">
+    insert into mms_warehouse (id, whs_id, whs_name, 
+      whs_status, whs_size, whs_type, 
+      rent_fee, rent_start_date, rent_end_date, 
+      whs_address, whs_lgt, whs_lat, 
+      whs_owner, whs_owner_cellphone, whs_keeper, 
+      whs_keeper_cellphone, remark, create_user, 
+      create_time, update_user, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{whsId,jdbcType=VARCHAR}, #{whsName,jdbcType=VARCHAR}, 
+      #{whsStatus,jdbcType=TINYINT}, #{whsSize,jdbcType=DOUBLE}, #{whsType,jdbcType=CHAR}, 
+      #{rentFee,jdbcType=DECIMAL}, #{rentStartDate,jdbcType=DATE}, #{rentEndDate,jdbcType=DATE}, 
+      #{whsAddress,jdbcType=VARCHAR}, #{whsLgt,jdbcType=VARCHAR}, #{whsLat,jdbcType=VARCHAR}, 
+      #{whsOwner,jdbcType=VARCHAR}, #{whsOwnerCellphone,jdbcType=VARCHAR}, #{whsKeeper,jdbcType=VARCHAR}, 
+      #{whsKeeperCellphone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ky.mms.dal.mysql.model.WarehouseDo">
+    insert into mms_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="whsId != null">
+        whs_id,
+      </if>
+      <if test="whsName != null">
+        whs_name,
+      </if>
+      <if test="whsStatus != null">
+        whs_status,
+      </if>
+      <if test="whsSize != null">
+        whs_size,
+      </if>
+      <if test="whsType != null">
+        whs_type,
+      </if>
+      <if test="rentFee != null">
+        rent_fee,
+      </if>
+      <if test="rentStartDate != null">
+        rent_start_date,
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date,
+      </if>
+      <if test="whsAddress != null">
+        whs_address,
+      </if>
+      <if test="whsLgt != null">
+        whs_lgt,
+      </if>
+      <if test="whsLat != null">
+        whs_lat,
+      </if>
+      <if test="whsOwner != null">
+        whs_owner,
+      </if>
+      <if test="whsOwnerCellphone != null">
+        whs_owner_cellphone,
+      </if>
+      <if test="whsKeeper != null">
+        whs_keeper,
+      </if>
+      <if test="whsKeeperCellphone != null">
+        whs_keeper_cellphone,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="whsId != null">
+        #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsName != null">
+        #{whsName,jdbcType=VARCHAR},
+      </if>
+      <if test="whsStatus != null">
+        #{whsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="whsSize != null">
+        #{whsSize,jdbcType=DOUBLE},
+      </if>
+      <if test="whsType != null">
+        #{whsType,jdbcType=CHAR},
+      </if>
+      <if test="rentFee != null">
+        #{rentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="rentStartDate != null">
+        #{rentStartDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        #{rentEndDate,jdbcType=DATE},
+      </if>
+      <if test="whsAddress != null">
+        #{whsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="whsLgt != null">
+        #{whsLgt,jdbcType=VARCHAR},
+      </if>
+      <if test="whsLat != null">
+        #{whsLat,jdbcType=VARCHAR},
+      </if>
+      <if test="whsOwner != null">
+        #{whsOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="whsOwnerCellphone != null">
+        #{whsOwnerCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="whsKeeper != null">
+        #{whsKeeper,jdbcType=VARCHAR},
+      </if>
+      <if test="whsKeeperCellphone != null">
+        #{whsKeeperCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ky.mms.dal.mysql.model.WarehouseDo">
+    update mms_warehouse
+    <set>
+      <if test="whsId != null">
+        whs_id = #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsName != null">
+        whs_name = #{whsName,jdbcType=VARCHAR},
+      </if>
+      <if test="whsStatus != null">
+        whs_status = #{whsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="whsSize != null">
+        whs_size = #{whsSize,jdbcType=DOUBLE},
+      </if>
+      <if test="whsType != null">
+        whs_type = #{whsType,jdbcType=CHAR},
+      </if>
+      <if test="rentFee != null">
+        rent_fee = #{rentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="rentStartDate != null">
+        rent_start_date = #{rentStartDate,jdbcType=DATE},
+      </if>
+      <if test="rentEndDate != null">
+        rent_end_date = #{rentEndDate,jdbcType=DATE},
+      </if>
+      <if test="whsAddress != null">
+        whs_address = #{whsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="whsLgt != null">
+        whs_lgt = #{whsLgt,jdbcType=VARCHAR},
+      </if>
+      <if test="whsLat != null">
+        whs_lat = #{whsLat,jdbcType=VARCHAR},
+      </if>
+      <if test="whsOwner != null">
+        whs_owner = #{whsOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="whsOwnerCellphone != null">
+        whs_owner_cellphone = #{whsOwnerCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="whsKeeper != null">
+        whs_keeper = #{whsKeeper,jdbcType=VARCHAR},
+      </if>
+      <if test="whsKeeperCellphone != null">
+        whs_keeper_cellphone = #{whsKeeperCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ky.mms.dal.mysql.model.WarehouseDo">
+    update mms_warehouse
+    set whs_id = #{whsId,jdbcType=VARCHAR},
+      whs_name = #{whsName,jdbcType=VARCHAR},
+      whs_status = #{whsStatus,jdbcType=TINYINT},
+      whs_size = #{whsSize,jdbcType=DOUBLE},
+      whs_type = #{whsType,jdbcType=CHAR},
+      rent_fee = #{rentFee,jdbcType=DECIMAL},
+      rent_start_date = #{rentStartDate,jdbcType=DATE},
+      rent_end_date = #{rentEndDate,jdbcType=DATE},
+      whs_address = #{whsAddress,jdbcType=VARCHAR},
+      whs_lgt = #{whsLgt,jdbcType=VARCHAR},
+      whs_lat = #{whsLat,jdbcType=VARCHAR},
+      whs_owner = #{whsOwner,jdbcType=VARCHAR},
+      whs_owner_cellphone = #{whsOwnerCellphone,jdbcType=VARCHAR},
+      whs_keeper = #{whsKeeper,jdbcType=VARCHAR},
+      whs_keeper_cellphone = #{whsKeeperCellphone,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ky.mms.dal.mysql.mapper.MaterialDoMapper">
+  <resultMap id="BaseResultMap" type="com.ky.mms.dal.mysql.model.MaterialDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="mat_name" jdbcType="VARCHAR" property="matName" />
+    <result column="mat_spe" jdbcType="VARCHAR" property="matSpe" />
+    <result column="mat_brand" jdbcType="VARCHAR" property="matBrand" />
+    <result column="mat_unit" jdbcType="VARCHAR" property="matUnit" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mat_id, mat_name, mat_spe, mat_brand, mat_unit, create_user, create_time, update_user, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_material
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_material
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ky.mms.dal.mysql.model.MaterialDo">
+    insert into mms_material (id, mat_id, mat_name, 
+      mat_spe, mat_brand, mat_unit, 
+      create_user, create_time, update_user, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{matId,jdbcType=VARCHAR}, #{matName,jdbcType=VARCHAR}, 
+      #{matSpe,jdbcType=VARCHAR}, #{matBrand,jdbcType=VARCHAR}, #{matUnit,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ky.mms.dal.mysql.model.MaterialDo">
+    insert into mms_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="matName != null">
+        mat_name,
+      </if>
+      <if test="matSpe != null">
+        mat_spe,
+      </if>
+      <if test="matBrand != null">
+        mat_brand,
+      </if>
+      <if test="matUnit != null">
+        mat_unit,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matSpe != null">
+        #{matSpe,jdbcType=VARCHAR},
+      </if>
+      <if test="matBrand != null">
+        #{matBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="matUnit != null">
+        #{matUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ky.mms.dal.mysql.model.MaterialDo">
+    update mms_material
+    <set>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        mat_name = #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matSpe != null">
+        mat_spe = #{matSpe,jdbcType=VARCHAR},
+      </if>
+      <if test="matBrand != null">
+        mat_brand = #{matBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="matUnit != null">
+        mat_unit = #{matUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ky.mms.dal.mysql.model.MaterialDo">
+    update mms_material
+    set mat_id = #{matId,jdbcType=VARCHAR},
+      mat_name = #{matName,jdbcType=VARCHAR},
+      mat_spe = #{matSpe,jdbcType=VARCHAR},
+      mat_brand = #{matBrand,jdbcType=VARCHAR},
+      mat_unit = #{matUnit,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

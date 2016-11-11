@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ky.mms.dal.mysql.mapper.IncomeDetailDoMapper">
+  <resultMap id="BaseResultMap" type="com.ky.mms.dal.mysql.model.IncomeDetailDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="article_id" jdbcType="VARCHAR" property="articleId" />
+    <result column="event_id" jdbcType="VARCHAR" property="eventId" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="whs_id" jdbcType="VARCHAR" property="whsId" />
+    <result column="unit_fee" jdbcType="DECIMAL" property="unitFee" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, article_id, event_id, mat_id, whs_id, unit_fee, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_income_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_income_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ky.mms.dal.mysql.model.IncomeDetailDo">
+    insert into mms_income_detail (id, article_id, event_id, 
+      mat_id, whs_id, unit_fee, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{articleId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
+      #{matId,jdbcType=VARCHAR}, #{whsId,jdbcType=VARCHAR}, #{unitFee,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ky.mms.dal.mysql.model.IncomeDetailDo">
+    insert into mms_income_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="eventId != null">
+        event_id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="whsId != null">
+        whs_id,
+      </if>
+      <if test="unitFee != null">
+        unit_fee,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null">
+        #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsId != null">
+        #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitFee != null">
+        #{unitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ky.mms.dal.mysql.model.IncomeDetailDo">
+    update mms_income_detail
+    <set>
+      <if test="articleId != null">
+        article_id = #{articleId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventId != null">
+        event_id = #{eventId,jdbcType=VARCHAR},
+      </if>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsId != null">
+        whs_id = #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitFee != null">
+        unit_fee = #{unitFee,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ky.mms.dal.mysql.model.IncomeDetailDo">
+    update mms_income_detail
+    set article_id = #{articleId,jdbcType=VARCHAR},
+      event_id = #{eventId,jdbcType=VARCHAR},
+      mat_id = #{matId,jdbcType=VARCHAR},
+      whs_id = #{whsId,jdbcType=VARCHAR},
+      unit_fee = #{unitFee,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ky.mms.dal.mysql.mapper.StockDoMapper">
+  <resultMap id="BaseResultMap" type="com.ky.mms.dal.mysql.model.StockDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="whs_id" jdbcType="VARCHAR" property="whsId" />
+    <result column="total_count" jdbcType="BIGINT" property="totalCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="lock_version" jdbcType="BIGINT" property="lockVersion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mat_id, whs_id, total_count, create_time, update_time, lock_version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mms_stock
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mms_stock
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ky.mms.dal.mysql.model.StockDo">
+    insert into mms_stock (id, mat_id, whs_id, 
+      total_count, create_time, update_time, 
+      lock_version)
+    values (#{id,jdbcType=BIGINT}, #{matId,jdbcType=VARCHAR}, #{whsId,jdbcType=VARCHAR}, 
+      #{totalCount,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{lockVersion,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ky.mms.dal.mysql.model.StockDo">
+    insert into mms_stock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="whsId != null">
+        whs_id,
+      </if>
+      <if test="totalCount != null">
+        total_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="lockVersion != null">
+        lock_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsId != null">
+        #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null">
+        #{totalCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockVersion != null">
+        #{lockVersion,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ky.mms.dal.mysql.model.StockDo">
+    update mms_stock
+    <set>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="whsId != null">
+        whs_id = #{whsId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null">
+        total_count = #{totalCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockVersion != null">
+        lock_version = #{lockVersion,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ky.mms.dal.mysql.model.StockDo">
+    update mms_stock
+    set mat_id = #{matId,jdbcType=VARCHAR},
+      whs_id = #{whsId,jdbcType=VARCHAR},
+      total_count = #{totalCount,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      lock_version = #{lockVersion,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
